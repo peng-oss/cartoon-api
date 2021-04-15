@@ -19,5 +19,45 @@ yarn dev 启动项目
 登录验证用户
 /user/search---------/login
 
+{
+msg: "登录成功",
+status: 200,
+token,
+}
+
 注册用户信息
 /user/add ----------/login/reg
+
+# 排行榜的接口没变
+
+/rank/all
+
+{
+status: 200,
+msg: "获取成功",
+list: ListAllArr,
+little: popularityLists,
+}
+
+/rank/girl
+
+{
+status: 200,
+msg: "获取成功",
+list: girlLists,
+}
+
+/rank/yongGirl
+{
+status: 200,
+msg: "获取成功",
+list: yongGirllists,
+}
+
+/rank/yong
+
+{
+status: 200,
+msg: "获取成功",
+list: yongLists,
+}

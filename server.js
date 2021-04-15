@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const colors = require("colors");
 const connectDB = require("./config/db");
 const Login = require("./routes/login/login");
+const RankList = require("./routes/rankList/rankList");
+const Sort = require("./routes/sort/sort");
 const expressJwt = require("express-jwt");
 const verToken = require("./config/token");
 //配置环境变量
@@ -23,7 +25,8 @@ app.use(morgan("dev"));
 
 //配置路由
 app.use("/login", Login);
-
+app.use("/rank", RankList);
+app.use("/padding", Sort);
 //注册token中间件
 app.use(
   expressJwt({

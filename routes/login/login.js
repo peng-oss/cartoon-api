@@ -10,7 +10,7 @@ router.post("/", (req, res) => {
   const { name, password } = req.body;
   LoginModel.find({ name, password }, (err, data) => {
     if (data.length === 0) {
-      errorSend(res, "登录失败，该用户未登录");
+      errorSend(res, "登录失败，该用户未注册");
     } else {
       const token =
         "Bearer " +
@@ -20,7 +20,7 @@ router.post("/", (req, res) => {
           },
           "secret12345",
           {
-            expiresIn: 3600 * 24 * 3,
+            expiresIn: 1000 * 60 * 60 * 60 * 24,
           }
         );
       res.status(200).json({
