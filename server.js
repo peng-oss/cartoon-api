@@ -5,7 +5,7 @@ const colors = require("colors");
 const connectDB = require("./config/db");
 const Login = require("./routes/login/login");
 const expressJwt = require("express-jwt");
-const { verToken } = require("./config/token");
+const verToken = require("./config/token");
 //配置环境变量
 dotenv.config({
   path: "./config/config.env",
@@ -34,36 +34,12 @@ app.use(
   })
 );
 //获取token
-app.use(function (req, res, next) {
-  var token = req.headers["authorization"];
-  if (token == undefined) {
-    return next();
-  } else {
-    verToken(token)
-      .then((data) => {
-        req.data = data;
-        return next();
-      })
-      .catch((error) => {
-        console.log(error);
-        return next();
-      });
-  }
+app.use((req, res, next) => {
+  verToken.getToken(req, res, next);
 });
-//判断是否
-app.use(function (err, req, res, next) {
-  console.log(err);
-  if (err.name === "UnauthorizedError") {
-    console.error(req.path + ",无效token");
-    res.json({
-      message: "token过期，请重新登录",
-      code: 400,
-    });
-    return;
-  }
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+//如果错误返回信息
+app.use((err, req, res, next) => {
+  verToken.ErrorToken(err, req, res, next);
 });
 
 //http://127.0.0.1:5000
