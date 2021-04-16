@@ -26,7 +26,7 @@ app.use(morgan("dev"));
 //配置路由
 app.use("/login", Login);
 app.use("/rank", RankList);
-app.use("/padding", Sort);
+app.use("/paging", Sort);
 //注册token中间件
 app.use(
   expressJwt({
