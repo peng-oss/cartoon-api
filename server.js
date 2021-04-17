@@ -1,3 +1,4 @@
+
 const express = require("express")
 const path = require('path')
 const dotenv = require("dotenv")
@@ -10,8 +11,11 @@ const verToken = require("./config/token")
 // 路由
 const Login = require("./routes/login/login")
 const Comment = require("./routes/comment/comment")
+const RankList = require("./routes/rankList/rankList")
+const Sort = require("./routes/sort/sort")
 
-// 配置环境变量
+
+//配置环境变量
 dotenv.config({
   path: "./config/config.env",
 });
@@ -30,11 +34,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 
-// 配置路由
-app.use("/login", Login)
+
+
+//配置路由
+app.use("/login", Login);
+app.use("/rank", RankList);
+app.use("/paging", Sort);
 app.use("/world", Comment)
 
-// 注册token中间件
+//注册token中间件
 app.use(
   expressJwt({
     secret: "secret12345",
