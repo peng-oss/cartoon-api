@@ -1,38 +1,12 @@
-const jwt = require("express-jwt");
 
-//解析token
-const mixToken = (token) => {
-  return new Promise((resolve, reject) => {
-    var info = jwt.verify(
-      token,
-      { secret: "secret12345", algorithms: ["HS256"] },
-      (error, decoded) => {
-        if (error) {
-          console.log(error.message);
-          return;
-        }
-        console.log(decoded);
-      }
-    );
-    resolve(info);
-  });
-};
+
 let verToken = {
-  //获取token
-  getToken: (req, res, next) => {
-    var token = req.headers["authorization"];
-    if (token == undefined) {
-      return next();
-    } else {
-      mixToken(token)
-        .then((data) => {
-          req.data = data;
-          return next();
-        })
-        .catch((error) => {
-          console.log(error);
-          return next();
-        });
+  setToken:(req,next)=>{
+    if(req.user){
+      req.userId=req.user.id
+      return next()
+    }else{
+      return next()
     }
   },
   //判断token错误时返回的信息

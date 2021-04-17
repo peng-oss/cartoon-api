@@ -1,6 +1,7 @@
 const express = require("express");
 const LoginModel = require("../../models/login/loginModel");
 const { successSend, errorSend } = require("../../config/tools");
+const CollectionModel = require('../../models/collections/collections')
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 /**
@@ -12,22 +13,32 @@ router.post("/", (req, res) => {
     if (data.length === 0) {
       errorSend(res, "登录失败，该用户未注册");
     } else {
+      console.log(data[0]._id)
       const token =
         "Bearer " +
         jwt.sign(
           {
-            _id: data._id,
+            id: data[0]._id,
           },
           "secret12345",
           {
             expiresIn: 1000 * 60 * 60 * 60 * 24,
           }
         );
-      res.status(200).json({
-        msg: "登录成功",
-        status: 200,
-        token,
-      });
+        CollectionModel.find(
+          {
+          userId: data[0]._id
+          }
+          ,(err,doc) => {
+            res.status(200).json({
+              msg: "登录成功",
+              status: 200,
+              token,
+              name:name,
+              collections:doc
+            });
+          })
+     
     }
   });
 });
