@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const CollectionsSchema = mongoose.Schema({
   title: String,
   author: String,
-  distinguish: Boolean,
+  userId: String,
 });
 
 const CollectionModel = mongoose.model(
