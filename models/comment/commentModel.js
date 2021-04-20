@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 const commentSchema = mongoose.Schema({
     url: {
         type: String,
-        userName: true
+        required: true
     }
     ,
     userName: {

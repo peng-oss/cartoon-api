@@ -4,9 +4,6 @@ const { successSend, errorSend } = require("../../config/tools");
 const router = express.Router()  // 创建一个路由容器
 
 
-// 设置允许跨域访问该服务
-
-
 // 1.获取评论接口(查)
 router.get('/getComment', (req, res) => {
     CommentListModel.find((err, commentList) => {

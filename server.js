@@ -7,12 +7,14 @@ const expressJwt = require('express-jwt')
 const verToken = require('./config/token')
 const path = require("path")
 
-// 路由
+// 引入路由
 const Login = require('./routes/login/login')
 const RankList = require('./routes/rankList/rankList')
 const Center = require('./routes/center/center')
 const Sort = require('./routes/sort/sort')
 const Comment = require("./routes/comment/comment")
+const Recommend = require("./routes/recommend/recommend")
+
 // 配置环境变量
 dotenv.config({
   path: './config/config.env',
@@ -31,10 +33,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 
 // 配置路由
-app.use("/login", Login);
-app.use("/rank", RankList);
-app.use("/paging", Sort);
-app.use("/world", Comment)
+app.use("/login", Login);      // 登录页面
+app.use("/rank", RankList);    // 排行榜页面
+app.use("/paging", Sort);      // 分类页面
+app.use("/world", Comment)     // 评论页面
+app.use("/works", Recommend)   // 推荐页面
 
 //连接数据库
 connectDB()
