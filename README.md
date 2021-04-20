@@ -14,7 +14,7 @@ yarn dev 启动项目
 
 ### api 请求地址的变化
 
-# 登录页面：
+## 一.登录页面：
 
 登录验证用户
 /user/search---------/login
@@ -28,9 +28,9 @@ token,
 注册用户信息
 /user/add ----------/login/reg
 
-# 排行榜的接口没变
+## 二.排行榜的接口没变
 
-总表单
+**总表单**
 /rank/all
 
 {
@@ -40,7 +40,7 @@ list: ListAllArr,
 little: popularityLists,
 }
 
-少女榜
+**少女榜**
 /rank/girl
 
 {
@@ -49,7 +49,7 @@ msg: "获取成功",
 list: girlLists,
 }
 
-青女榜
+**青女榜**
 /rank/yongGirl
 {
 status: 200,
@@ -57,7 +57,7 @@ msg: "获取成功",
 list: yongGirllists,
 }
 
-少年榜
+**少年榜**
 /rank/yong
 
 {
@@ -66,10 +66,10 @@ msg: "获取成功",
 list: yongLists,
 }
 
-### 分类接口没变
+## 三.分类接口没变
 
-分页
-/paging/img 
+**分页**
+/**paging/img 
 
 {
 status: 200,
@@ -78,7 +78,7 @@ status: 200,
  total: totals,
  }
 
-收藏
+**收藏**
 
 /paging/collection
 
@@ -87,7 +87,7 @@ status: 200,
     status: 200,
 }
 
-取消收藏
+**取消收藏**
 
 /paging/collectionDec
 
@@ -96,10 +96,11 @@ status: 200,
     status: 200,
 }
 
-查找分类
+**查找分类**
 
 /paging/sort
 
+```
 {
         msg: '获取分类成功',
         status: 200,
@@ -107,3 +108,58 @@ status: 200,
         total: length,
       
 }
+```
+
+## 四.世界页面接口：
+
+#### **4.1 获取已有评论接口**(没变)：/world/getComment
+
+**传入参数：**无
+
+**返回值：**
+
+```
+{
+  status: 200，
+  msg: "获取成功",
+  list: commentList.reverse(),  // 评论数组
+}	
+```
+
+#### **4.2 发表评论接口**(没变)：/world/public
+
+| 传入参数名 | 参数描述       |
+| ---------- | :------------- |
+| userName   | 用户名         |
+| content    | 发表评论的内容 |
+| publicTime | 发表评论时间   |
+| url        | 头像图片地址   |
+
+**返回值**
+
+```
+{
+  status: 200,
+  msg: "发表成功",
+  list: commentList,   // 发表评论后的新数组 
+}
+```
+
+#### **4.3 删除评论接口**（没变）
+
+| 传入参数名 | 参数描述       |
+| :--------- | -------------- |
+| id         | 被删除评论的id |
+
+**返回值**
+
+```
+{
+ status: 200,
+ msg: "删除成功",
+ list: commentList,
+}
+```
+
+
+
