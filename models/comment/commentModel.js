@@ -28,5 +28,7 @@ const commentSchema = mongoose.Schema({
 })
 
 // 将集合结构发布为模型并暴露
-module.exports = mongoose.model("Comment", commentSchema, "comment");
+const commentListModel = mongoose.model("Comment", commentSchema, "comment");
+
+module.exports = commentListModel
 

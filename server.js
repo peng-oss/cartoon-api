@@ -34,8 +34,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 
-
-
 //配置路由
 app.use("/login", Login);
 app.use("/rank", RankList);
