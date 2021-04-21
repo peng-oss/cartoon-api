@@ -15,6 +15,7 @@ const Sort = require('./routes/sort/sort')
 const Comment = require("./routes/comment/comment")
 const Recommend = require("./routes/recommend/recommend")
 const Look = require('./routes/look/look')
+const Home = require('./routes/home/home')
 
 // 配置环境变量
 dotenv.config({
@@ -40,6 +41,7 @@ app.use("/paging", Sort);      // 分类页面
 app.use("/world", Comment)     // 评论页面
 app.use("/works", Recommend)   // 推荐页面
 app.use("/look", Look)         // 观看漫画页面
+app.use("/home", Home)         // 首页
 
 //连接数据库
 connectDB()
