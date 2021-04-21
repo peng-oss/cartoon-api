@@ -14,6 +14,7 @@ const Center = require('./routes/center/center')
 const Sort = require('./routes/sort/sort')
 const Comment = require("./routes/comment/comment")
 const Recommend = require("./routes/recommend/recommend")
+const Look = require('./routes/look/look')
 
 // 配置环境变量
 dotenv.config({
@@ -38,6 +39,7 @@ app.use("/rank", RankList);    // 排行榜页面
 app.use("/paging", Sort);      // 分类页面
 app.use("/world", Comment)     // 评论页面
 app.use("/works", Recommend)   // 推荐页面
+app.use("/look", Look)         // 观看漫画页面
 
 //连接数据库
 connectDB()
